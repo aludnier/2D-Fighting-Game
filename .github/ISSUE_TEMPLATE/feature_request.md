@@ -1,5 +1,14 @@
+---
+name: Feature request
+about: Suggest an idea for this project
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 # feature asked
 
-## How to implement
+**How to implement**
 
-### additionnal information
+**additionnal information**
