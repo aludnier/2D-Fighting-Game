@@ -27,3 +27,6 @@ shape = SubResource("RectangleShape2D_e2o6t")
 
 [node name="RigidBody2D" parent="." unique_id=1482684958 instance=ExtResource("3_33cqm")]
 position = Vector2(-11, 270)
+
+[node name="RigidBody2D2" parent="." unique_id=1214439895 instance=ExtResource("3_33cqm")]
+position = Vector2(308, -33)

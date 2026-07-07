@@ -1,7 +1,21 @@
 [gd_scene format=3 uid="uid://dsdhts8mopp33"]
 
-[ext_resource type="Script" uid="uid://ddvpt3lvysdp3" path="res://rigid_body_2d.gd" id="1_k8rrn"]
+[ext_resource type="Script" uid="uid://ddvpt3lvysdp3" path="res://script/Character.gd" id="1_k8rrn"]
+[ext_resource type="Script" uid="uid://dhevu0bd8dixl" path="res://script/Frame_data_class.gd" id="2_7v2w7"]
 [ext_resource type="Texture2D" uid="uid://6ygsl6vaob1f" path="res://asset/characters/maped-character-Sheet.png" id="2_d7vt2"]
+[ext_resource type="Script" uid="uid://cnfnuryofg0l3" path="res://script/hitbox.gd" id="3_d7vt2"]
+[ext_resource type="Script" uid="uid://cri3atyjms1vq" path="res://script/Attack_data_class.gd" id="3_p3t0x"]
+
+[sub_resource type="Resource" id="Resource_7v2w7"]
+script = ExtResource("2_7v2w7")
+damage = 10
+metadata/_custom_type_script = "uid://dhevu0bd8dixl"
+
+[sub_resource type="Resource" id="Resource_6k5wm"]
+script = ExtResource("3_p3t0x")
+animation = &"light-punch"
+frames = Array[ExtResource("2_7v2w7")]([null, null, null, SubResource("Resource_7v2w7")])
+metadata/_custom_type_script = "uid://cri3atyjms1vq"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6k5wm"]
 size = Vector2(70, 330)
@@ -76,10 +90,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6ms5"]
 size = Vector2(68, 53)
 
-[node name="RigidBody2D" type="RigidBody2D" unique_id=1482684958]
-collision_layer = 2
-collision_mask = 2
+[node name="Player" type="CharacterBody2D" unique_id=140332153 groups=["character"]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_k8rrn")
+Lpunch = SubResource("Resource_6k5wm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=790708537]
 position = Vector2(-10, 27)
@@ -90,13 +105,16 @@ texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_mbevu")
 animation = &"light-punch"
+frame = 3
 
-[node name="Node2D" type="Node2D" parent="." unique_id=511719878]
+[node name="hitboxes" type="Area2D" parent="." unique_id=1456709007]
+script = ExtResource("3_d7vt2")
 
-[node name="light-punch" type="Area2D" parent="Node2D" unique_id=1456709007]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/light-punch" unique_id=1020466220]
-position = Vector2(49, -25)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitboxes" unique_id=1020466220]
+position = Vector2(59, -25)
 shape = SubResource("RectangleShape2D_n6ms5")
+disabled = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="hitboxes" to="hitboxes" method="_on_body_entered"]
+[connection signal="hit" from="hitboxes" to="." method="_on_hitboxes_hit"]
