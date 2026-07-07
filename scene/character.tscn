@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://dsdhts8mopp33"]
+
+[ext_resource type="Script" uid="uid://ddvpt3lvysdp3" path="res://rigid_body_2d.gd" id="1_k8rrn"]
+[ext_resource type="Texture2D" uid="uid://6ygsl6vaob1f" path="res://asset/characters/maped-character-Sheet.png" id="2_d7vt2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6k5wm"]
+size = Vector2(70, 330)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fc0e3"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(0, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jktm"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(96, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryrav"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(192, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eow3j"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(288, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5wjh"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(0, 128, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vef74"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(96, 128, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hve3p"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(192, 128, 96, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mbevu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fc0e3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jktm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryrav")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eow3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5wjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vef74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hve3p")
+}],
+"loop": 0,
+"name": &"light-punch",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6ms5"]
+size = Vector2(68, 53)
+
+[node name="RigidBody2D" type="RigidBody2D" unique_id=1482684958]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_k8rrn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=790708537]
+position = Vector2(-10, 27)
+shape = SubResource("RectangleShape2D_6k5wm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1560615533]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_mbevu")
+animation = &"light-punch"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=511719878]
+
+[node name="light-punch" type="Area2D" parent="Node2D" unique_id=1456709007]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/light-punch" unique_id=1020466220]
+position = Vector2(49, -25)
+shape = SubResource("RectangleShape2D_n6ms5")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
