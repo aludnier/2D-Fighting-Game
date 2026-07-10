@@ -1,7 +1,7 @@
 extends Resource
 class_name FrameData
 
-@export var hitbox: Array[Shape2D]
+@export var hitbox: Array[HitboxData]
 @export var damage: int
 @export var hitstun: int
 @export var blockstun: int

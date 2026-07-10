@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://cimrosa3bxl2e"]
+
+[ext_resource type="Texture2D" uid="uid://rpfn4fpg8at1" path="res://asset/characters/puching-bag.png" id="1_ppggr"]
+[ext_resource type="Script" uid="uid://cdyw140pvchjk" path="res://script/puching_bag.gd" id="1_s5dow"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xx2o"]
+atlas = ExtResource("1_ppggr")
+region = Rect2(0, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_og5rq"]
+atlas = ExtResource("1_ppggr")
+region = Rect2(96, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8isxu"]
+atlas = ExtResource("1_ppggr")
+region = Rect2(192, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3a3v"]
+atlas = ExtResource("1_ppggr")
+region = Rect2(0, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltbfy"]
+atlas = ExtResource("1_ppggr")
+region = Rect2(288, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6wwv"]
+atlas = ExtResource("1_ppggr")
+region = Rect2(0, 0, 96, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n6ms5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xx2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_og5rq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8isxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3a3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltbfy")
+}],
+"loop": 0,
+"name": &"get_hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6wwv")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6ms5"]
+size = Vector2(128, 343)
+
+[node name="puching-bag" type="CharacterBody2D" unique_id=776031333 groups=["character"]]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_s5dow")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2102821726]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_n6ms5")
+animation = &"get_hit"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=549492948]
+position = Vector2(-1, 17.5)
+shape = SubResource("RectangleShape2D_n6ms5")
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=1817514353]
+offset_left = -97.0
+offset_top = -198.0
+offset_right = 102.0
+offset_bottom = -155.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
