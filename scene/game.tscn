@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ceu11klbc65tt" path="res://asset/background/basic-bg.png" id="1_dbls1"]
 [ext_resource type="Texture2D" uid="uid://bt14hui2nfrns" path="res://asset/background/basic-floor.png" id="2_33cqm"]
 [ext_resource type="PackedScene" uid="uid://dsdhts8mopp33" path="res://scene/character.tscn" id="3_33cqm"]
+[ext_resource type="PackedScene" uid="uid://cimrosa3bxl2e" path="res://scene/puching_bag.tscn" id="4_xwcet"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(2125, 46)
@@ -25,5 +26,8 @@ texture = ExtResource("2_33cqm")
 position = Vector2(-8.5, 491)
 shape = SubResource("RectangleShape2D_e2o6t")
 
-[node name="RigidBody2D" parent="." unique_id=1482684958 instance=ExtResource("3_33cqm")]
-position = Vector2(-11, 270)
+[node name="puching-bag" parent="." unique_id=1367791818 instance=ExtResource("4_xwcet")]
+position = Vector2(167, 276)
+
+[node name="Player" parent="." unique_id=140332153 instance=ExtResource("3_33cqm")]
+position = Vector2(-334, 264)
