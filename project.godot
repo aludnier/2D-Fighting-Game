@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="2D-fighting game"
-run/main_scene="uid://dra8gjxffm6x3"
+run/main_scene="uid://bgscodq5x7op1"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 AttackDataClass="*uid://cri3atyjms1vq"
+NetworkHandler="*uid://b3kcttsuulskf"
 
 [display]
 

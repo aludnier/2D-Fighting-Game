@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bgscodq5x7op1"]
+
+[ext_resource type="Script" uid="uid://534x1vmin3yp" path="res://script/network/networkUI.gd" id="1_e5g8k"]
+[ext_resource type="PackedScene" uid="uid://dra8gjxffm6x3" path="res://scene/game.tscn" id="2_8hxod"]
+
+[node name="NetworkUI" type="Control" unique_id=1778671469]
+layout_mode = 3
+anchor_right = 0.27
+anchor_bottom = 0.192
+offset_right = -534.60004
+offset_bottom = -207.36
+script = ExtResource("1_e5g8k")
+next_scene = ExtResource("2_8hxod")
+
+[node name="HBoxContainer" type="BoxContainer" parent="." unique_id=1073895258]
+layout_mode = 1
+offset_right = 199.0
+offset_bottom = 70.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Server" type="Button" parent="HBoxContainer" unique_id=680178895]
+layout_mode = 2
+text = "Start Server"
+
+[node name="Client" type="Button" parent="HBoxContainer" unique_id=1323243001]
+layout_mode = 2
+text = "Start Client
+"
+
+[connection signal="pressed" from="HBoxContainer/Server" to="." method="_on_server_pressed"]
+[connection signal="pressed" from="HBoxContainer/Client" to="." method="_on_client_pressed"]

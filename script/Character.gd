@@ -47,10 +47,15 @@ var attacking: bool = false
 var jumping: bool = false
 var falling: bool = false
 
+func _enter_tree() -> void:
+	set_multiplayer_authority(name.to_int())
+
 func _ready() -> void:
 	state_machine.change_state(state_machine.Idle)
 
 func _physics_process(delta):
+	if !is_multiplayer_authority():
+		return
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	else:
@@ -73,6 +78,8 @@ func start_attack(pattern : attack) -> void:
 	attack_frame = 0
 
 func _unhandled_input(event: InputEvent) -> void:
+	if !is_multiplayer_authority():
+		return
 	state_machine.handle_input(event)
 
 func reset_attack():

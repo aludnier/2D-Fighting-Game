@@ -146,6 +146,11 @@ size = Vector2(68, 53)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p3t0x"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_x6pvx"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="Player" type="CharacterBody2D" unique_id=140332153 node_paths=PackedStringArray("state_machine") groups=["character"]]
 collision_layer = 3
 collision_mask = 3
@@ -218,6 +223,9 @@ metadata/_custom_type_script = "uid://dhk37p80m5buj"
 [node name="Land" type="Node" parent="StateMachine" unique_id=1069641807]
 script = ExtResource("12_x6pvx")
 metadata/_custom_type_script = "uid://dhk37p80m5buj"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1388162321]
+replication_config = SubResource("SceneReplicationConfig_x6pvx")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

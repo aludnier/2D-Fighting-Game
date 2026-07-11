@@ -3,12 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://ceu11klbc65tt" path="res://asset/background/basic-bg.png" id="1_dbls1"]
 [ext_resource type="Texture2D" uid="uid://bt14hui2nfrns" path="res://asset/background/basic-floor.png" id="2_33cqm"]
 [ext_resource type="PackedScene" uid="uid://dsdhts8mopp33" path="res://scene/character.tscn" id="3_33cqm"]
+[ext_resource type="Script" uid="uid://da1xp2m6j6gba" path="res://script/network/multiplayer_spawner.gd" id="4_p1ry8"]
 [ext_resource type="PackedScene" uid="uid://cimrosa3bxl2e" path="res://scene/puching_bag.tscn" id="4_xwcet"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(2125, 46)
 
-[node name="Node2D" type="Node2D" unique_id=2109215383]
+[node name="game" type="Node2D" unique_id=2109215383]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=911313955]
 
@@ -29,5 +30,10 @@ shape = SubResource("RectangleShape2D_e2o6t")
 [node name="puching-bag" parent="." unique_id=1367791818 instance=ExtResource("4_xwcet")]
 position = Vector2(167, 276)
 
-[node name="Player" parent="." unique_id=140332153 instance=ExtResource("3_33cqm")]
-position = Vector2(-334, 264)
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1309595375]
+_spawnable_scenes = PackedStringArray("uid://dsdhts8mopp33")
+spawn_path = NodePath("../player_spawn")
+script = ExtResource("4_p1ry8")
+player_scene = ExtResource("3_33cqm")
+
+[node name="player_spawn" type="Node" parent="." unique_id=532456411]
